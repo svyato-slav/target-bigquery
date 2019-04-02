@@ -70,7 +70,10 @@ def define_schema(field, name):
             schema_mode = 'NULLABLE'
         else:
             schema_mode = 'required'
-        schema_type = field['type'][1]
+        try:
+            schema_type = field['type'][1]
+        except IndexError:
+            schema_type = field['type'][0]
     else:
         schema_type = field['type']
     if schema_type == "object":
